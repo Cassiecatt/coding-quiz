@@ -1,3 +1,20 @@
+body {
+    background-color: rgb(214, 232, 233);
+    width 100;
+}
+
+body h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.containter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .choice-container {
     display: flex;
     flex-wrap: wrap;
@@ -6,12 +23,12 @@
 }
 
 .choice-text:hover {
-    background-color: rgb(170, 96, 240);
+    background-color: rgb(57, 216, 224);
 }
 
 .choice-text {
     padding: 1.5rem;
-    width: 100%;
+    width: 50%;
     text-align: left;
     font-size: 24px;
     border: 3px solid;
