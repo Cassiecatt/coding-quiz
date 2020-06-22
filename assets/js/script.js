@@ -2,7 +2,6 @@
 var question = document.getElementById("question");
 var choices = document.querySelectorAll(".choice");
 
-
 // Array of questions
 
 var questions = [
@@ -105,9 +104,6 @@ function startGame() {
   setQuestion();
 }
 
-// function answers() {
-
-// }
 
 //Event listeners
 
