@@ -1,4 +1,7 @@
-//Variables
+//Global Variables
+var question = document.getElementById("question");
+var choices = document.querySelectorAll(".choice");
+var i = 0
 
 // Array of questions
 
@@ -47,34 +50,77 @@ var questions = [
     choice2: "Terminal/bash",
     choice3: "For loops",
     choice4: "console.log",
-    answer: "3",
+    answer: "4",
   },
 ];
 
-var question = document.getElementById("question");
-var choice1 = document.getElementById("choice1");
-var choice2 = document.getElementById("choice2");
-var choice3 = document.getElementById("choice3");
-var choice4 = document.getElementById("choice4");
+function myTimer() {
+    //Variables within function (local)
+    var startTime = 60; 
+    var myInterval = 1000;
+    var timer = document.getElementById("timer");
+
+    var mySet = setInterval(createTimer, myInterval);
+
+    function createTimer() {
+        if (startTime > 0) {
+            timer.textContent = startTime;
+
+            startTime = startTime - 1
+        } else {
+            timer.textContent = "done"
+            clearInterval(mySet)
+        }
+    }
+
+}
+
+var button = document.getElementById("startbutton");
+button.addEventListener("click", myTimer);
+
+
 
 // Game start function
 function startGame() {
-  //Copied current questions array
-  availableQuestions = [...questions];
+  // Hiding start button when function starts
+  button.style.display = "none";
+
+
+
+//   setInterval(setQuestion, 2000);
+//   var i = 0;
+
+//   function setQuestion() {
+//       if (i < questions.length) {
+//           question.textContent = questions[i].question
+//           choices[0].classList.remove("hidden");
+//           choices[1].classList.remove("hidden");
+//           choices[2].classList.remove("hidden");
+//           choices[3].classList.remove("hidden");
+
+//           choice1.textContent = questions[i].choice1
+//           choice2.textContent = questions[i].choice2
+//           choice3.textContent = questions[i].choice3
+//           choice4.textContent = questions[i].choice4
+//           i++
+//       } else {
+//           for (x=0; x < 4; x++) {
+//               choices[x].classList.add("hidden")
+//           }
+//           question.textContent = "No more questions"
+//           clearInterval(setQuestion)
+//       }
+//   }
+
+
+
+
 }
-
-
-
-
-
-
-
-
-
-
-startGame();
 
 //Event listener
 
-var button = document.getElementById("startbtn");
+//start button
+var button = document.getElementById("startbutton");
 button.addEventListener("click", startGame);
+
+//choices button
