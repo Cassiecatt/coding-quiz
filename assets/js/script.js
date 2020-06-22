@@ -1,7 +1,7 @@
 //Global Variables
 var question = document.getElementById("question");
 var choices = document.querySelectorAll(".choice");
-var i = 0
+
 
 // Array of questions
 
@@ -55,72 +55,66 @@ var questions = [
 ];
 
 function myTimer() {
-    //Variables within function (local)
-    var startTime = 60; 
-    var myInterval = 1000;
-    var timer = document.getElementById("timer");
+  //Variables within function (local)
+  var startTime = 75;
+  var myInterval = 1000;
+  var timer = document.getElementById("timer");
 
-    var mySet = setInterval(createTimer, myInterval);
+  var mySet = setInterval(createTimer, myInterval);
 
-    function createTimer() {
-        if (startTime > 0) {
-            timer.textContent = startTime;
+  function createTimer() {
+    if (startTime > 0) {
+      timer.textContent = startTime;
 
-            startTime = startTime - 1
-        } else {
-            timer.textContent = "done"
-            clearInterval(mySet)
-        }
+      startTime = startTime - 1;
+    } else {
+      timer.textContent = "done";
+      clearInterval(mySet);
     }
-
+  }
 }
-
-var button = document.getElementById("startbutton");
-button.addEventListener("click", myTimer);
-
-
 
 // Game start function
 function startGame() {
   // Hiding start button when function starts
   button.style.display = "none";
 
+  // Removing hidden styling of questions when game starts
+  function setQuestion() {
+    var i = 0;
 
+    if (i < questions.length) {
+      question.textContent = questions[i].question;
+      choices[0].classList.remove("hidden");
+      choices[1].classList.remove("hidden");
+      choices[2].classList.remove("hidden");
+      choices[3].classList.remove("hidden");
 
-//   setInterval(setQuestion, 2000);
-//   var i = 0;
-
-//   function setQuestion() {
-//       if (i < questions.length) {
-//           question.textContent = questions[i].question
-//           choices[0].classList.remove("hidden");
-//           choices[1].classList.remove("hidden");
-//           choices[2].classList.remove("hidden");
-//           choices[3].classList.remove("hidden");
-
-//           choice1.textContent = questions[i].choice1
-//           choice2.textContent = questions[i].choice2
-//           choice3.textContent = questions[i].choice3
-//           choice4.textContent = questions[i].choice4
-//           i++
-//       } else {
-//           for (x=0; x < 4; x++) {
-//               choices[x].classList.add("hidden")
-//           }
-//           question.textContent = "No more questions"
-//           clearInterval(setQuestion)
-//       }
-//   }
-
-
-
-
+      choice1.textContent = questions[i].choice1;
+      choice2.textContent = questions[i].choice2;
+      choice3.textContent = questions[i].choice3;
+      choice4.textContent = questions[i].choice4;
+      i++;
+    } else {
+      for (x = 0; x < 4; x++) {
+        choices[x].classList.add("hidden");
+      }
+      question.textContent = "No more questions";
+    }
+  }
+  setQuestion();
 }
 
-//Event listener
+// function answers() {
 
-//start button
+// }
+
+//Event listeners
+
+//start game function
 var button = document.getElementById("startbutton");
 button.addEventListener("click", startGame);
 
-//choices button
+// start timer function
+var button = document.getElementById("startbutton");
+button.addEventListener("click", myTimer);
