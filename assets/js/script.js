@@ -1,5 +1,9 @@
 //Global Variables
 var question = document.getElementById("question");
+// var choice1 = document.querySelectorAll(".choice1");
+// var choice2 = document.querySelectorAll(".choice2");
+// var choice3 = document.querySelectorAll(".choice3");
+// var choice4 = document.querySelectorAll(".choice4");
 var choices = document.querySelectorAll(".choice");
 
 // Array of questions
@@ -53,9 +57,10 @@ var questions = [
   },
 ];
 
+var startTime = 75;
+
 function myTimer() {
   //Variables within function (local)
-  var startTime = 75;
   var myInterval = 1000;
   var timer = document.getElementById("timer");
 
@@ -78,9 +83,10 @@ function startGame() {
   // Hiding start button when function starts
   button.style.display = "none";
 
+  var i = 0;
+
   // Removing hidden styling of questions when game starts
   function setQuestion() {
-    var i = 0;
 
     if (i < questions.length) {
       question.textContent = questions[i].question;
@@ -102,7 +108,24 @@ function startGame() {
     }
   }
   setQuestion();
+
+  var answers = document.getElementsByClassName('choice');
+  for(let j = 0; j < answers.length; j++) {
+    answers[j].addEventListener("click", function() {
+      //check answer: if correct, show next question, else keep on same question and choose another answer
+      var userValue = event.target.value
+      var questionCorrectAnswer = questions[i].answer;
+      if (userValue == questionCorrectAnswer) {
+        setQuestion();
+        // add to user score
+      } else {
+        startTime = startTime - 5;
+      }
+    })
+  }
 }
+
+
 
 
 //Event listeners
